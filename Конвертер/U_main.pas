@@ -91,9 +91,9 @@ var
 const
 
   //Основные переменные
-  VersionSoftware = '1.0'; //Версия программы
+  VersionSoftware = '2.0'; //Версия программы
   VersionTemplate = '2.0'; //Версия шаблона с которым может работать программа
-  DateBuild = '05.12.2020'; //Дата сборки
+  DateBuild = '19.01.2021'; //Дата сборки
 
   //Переменные массива massOrgList
   massOrgListKratName = 0;
