@@ -1,4 +1,4 @@
-unit U_main;
+п»їunit U_main;
 
 interface
 
@@ -53,8 +53,8 @@ type
     procedure processingOrgInfo();
     procedure processingMassMszFact();
 
-    procedure renderTableMszFact(); //Процедура отображает массив фактов назначения МСЗ
-    procedure renderDataToCsv(); //Преобразует все данные из massMszFact в массив CSV
+    procedure renderTableMszFact(); //РџСЂРѕС†РµРґСѓСЂР° РѕС‚РѕР±СЂР°Р¶Р°РµС‚ РјР°СЃСЃРёРІ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—
+    procedure renderDataToCsv(); //РџСЂРµРѕР±СЂР°Р·СѓРµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ РёР· massMszFact РІ РјР°СЃСЃРёРІ CSV
 
 
     procedure B_OpenFileClick(Sender: TObject);
@@ -74,38 +74,38 @@ type
 var
   F_main: TF_main;
 
-  //Массивы
-  massMszList : array of array of String; //Массив хранящий список доступных мер соц. поддержки
-  massMszFact : array of array of String; //Массив хранящий список фактов назначения мер соц. поддержки
-  massOrgList : array of array of String; //Массив хранящий список организаций
-  orgInfo : array of String; //Массив хранящий данные учреждения
+  //РњР°СЃСЃРёРІС‹
+  massMszList : array of array of String; //РњР°СЃСЃРёРІ С…СЂР°РЅСЏС‰РёР№ СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РјРµСЂ СЃРѕС†. РїРѕРґРґРµСЂР¶РєРё
+  massMszFact : array of array of String; //РњР°СЃСЃРёРІ С…СЂР°РЅСЏС‰РёР№ СЃРїРёСЃРѕРє С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РјРµСЂ СЃРѕС†. РїРѕРґРґРµСЂР¶РєРё
+  massOrgList : array of array of String; //РњР°СЃСЃРёРІ С…СЂР°РЅСЏС‰РёР№ СЃРїРёСЃРѕРє РѕСЂРіР°РЅРёР·Р°С†РёР№
+  orgInfo : array of String; //РњР°СЃСЃРёРІ С…СЂР°РЅСЏС‰РёР№ РґР°РЅРЅС‹Рµ СѓС‡СЂРµР¶РґРµРЅРёСЏ
 
-  XlsxFile : String; //Полный путь (с именем) к открываемому файлу-шаблону
-  XlsxFileDir : String; //Путь к папке с открываемым файлом-шаблоном
-  XlsxFileName : String; //Название файла с расширением (типом файла)
-  XlsxFileNameNoExt : String; //Название файла без расширения
+  XlsxFile : String; //РџРѕР»РЅС‹Р№ РїСѓС‚СЊ (СЃ РёРјРµРЅРµРј) Рє РѕС‚РєСЂС‹РІР°РµРјРѕРјСѓ С„Р°Р№Р»Сѓ-С€Р°Р±Р»РѕРЅСѓ
+  XlsxFileDir : String; //РџСѓС‚СЊ Рє РїР°РїРєРµ СЃ РѕС‚РєСЂС‹РІР°РµРјС‹Рј С„Р°Р№Р»РѕРј-С€Р°Р±Р»РѕРЅРѕРј
+  XlsxFileName : String; //РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃ СЂР°СЃС€РёСЂРµРЅРёРµРј (С‚РёРїРѕРј С„Р°Р№Р»Р°)
+  XlsxFileNameNoExt : String; //РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° Р±РµР· СЂР°СЃС€РёСЂРµРЅРёСЏ
 
-  M_Info : TMemo; //Хранит список не критических ошибок
-  M_Error : TMemo; //Хранит список критических ошибок
+  M_Info : TMemo; //РҐСЂР°РЅРёС‚ СЃРїРёСЃРѕРє РЅРµ РєСЂРёС‚РёС‡РµСЃРєРёС… РѕС€РёР±РѕРє
+  M_Error : TMemo; //РҐСЂР°РЅРёС‚ СЃРїРёСЃРѕРє РєСЂРёС‚РёС‡РµСЃРєРёС… РѕС€РёР±РѕРє
 
 const
 
-  //Основные переменные
-  VersionSoftware = '1.0'; //Версия программы
-  VersionTemplate = '2.0'; //Версия шаблона с которым может работать программа
-  DateBuild = '05.12.2020'; //Дата сборки
+  //РћСЃРЅРѕРІРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ
+  VersionSoftware = '1.0'; //Р’РµСЂСЃРёСЏ РїСЂРѕРіСЂР°РјРјС‹
+  VersionTemplate = '2.0'; //Р’РµСЂСЃРёСЏ С€Р°Р±Р»РѕРЅР° СЃ РєРѕС‚РѕСЂС‹Рј РјРѕР¶РµС‚ СЂР°Р±РѕС‚Р°С‚СЊ РїСЂРѕРіСЂР°РјРјР°
+  DateBuild = '05.12.2020'; //Р”Р°С‚Р° СЃР±РѕСЂРєРё
 
-  //Переменные массива massOrgList
+  //РџРµСЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІР° massOrgList
   massOrgListKratName = 0;
   massOrgListONMSZCode = 1;
 
-  //Переменные массива massMszList
+  //РџРµСЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІР° massMszList
   massMszListKratName = 0;
   massMszListLMSZID = 1;
-  massMszListСategoryID = 2;
+  massMszListРЎategoryID = 2;
   massMszListSumm = 3;
 
-  //Переменные массива massMSZFact
+  //РџРµСЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІР° massMSZFact
   massMSZFactSNILS = 0;
   massMSZFactFamily = 1;
   massMSZFactName = 2;
@@ -117,10 +117,10 @@ const
   massMSZFactDateFinish = 8;
   massMSZFactLMSZName = 9;
   massMSZFactAmount = 10;
-  massMSZFactLMSZID = 11; //Будет хранить LMSZID меры
-  massMSZFactLMSZCategoryID= 12; //Будет хранить СategoryID меры
+  massMSZFactLMSZID = 11; //Р‘СѓРґРµС‚ С…СЂР°РЅРёС‚СЊ LMSZID РјРµСЂС‹
+  massMSZFactLMSZCategoryID= 12; //Р‘СѓРґРµС‚ С…СЂР°РЅРёС‚СЊ РЎategoryID РјРµСЂС‹
 
-  //Переменные массива orgInfo
+  //РџРµСЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІР° orgInfo
   orgInfoName = 0;
   orgInfoYear = 1;
   orgInfoMonth = 2;
@@ -128,16 +128,16 @@ const
   orgInfoPhone = 4;
   orgInfoSpecialMarks = 5;
   orgInfoTemplateVersion = 6;
-  orgInfoONMSZCode = 7; //Будет хранить код выбранной организации
+  orgInfoONMSZCode = 7; //Р‘СѓРґРµС‚ С…СЂР°РЅРёС‚СЊ РєРѕРґ РІС‹Р±СЂР°РЅРЅРѕР№ РѕСЂРіР°РЅРёР·Р°С†РёРё
 
-  //Отступ в логах
-  textIdent = '     '; //Хранит отступ в пробелах
+  //РћС‚СЃС‚СѓРї РІ Р»РѕРіР°С…
+  textIdent = '     '; //РҐСЂР°РЅРёС‚ РѕС‚СЃС‚СѓРї РІ РїСЂРѕР±РµР»Р°С…
 
 implementation
 
 {$R *.dfm}
 
-//функция удаляет из переданной строки всё кроме цифр
+//С„СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РёР· РїРµСЂРµРґР°РЅРЅРѕР№ СЃС‚СЂРѕРєРё РІСЃС‘ РєСЂРѕРјРµ С†РёС„СЂ
 function TF_main.DeleteEverExNumber(Text:String) : String;
   var i :integer;
   TextOut : String;
@@ -149,16 +149,16 @@ Begin
 End;
 
 
-//Функция заменяет все "м" на "М" и все "ж" на "Ж"
+//Р¤СѓРЅРєС†РёСЏ Р·Р°РјРµРЅСЏРµС‚ РІСЃРµ "Рј" РЅР° "Рњ" Рё РІСЃРµ "Р¶" РЅР° "Р–"
 function TF_main.ReplaceSexMark(Text:String): String;
 Begin
-  Text := StringReplace(Text, 'ж', 'Ж', [rfReplaceAll]);
-  Text := StringReplace(Text, 'м', 'М', [rfReplaceAll]);
+  Text := StringReplace(Text, 'Р¶', 'Р–', [rfReplaceAll]);
+  Text := StringReplace(Text, 'Рј', 'Рњ', [rfReplaceAll]);
   Result := Text;
 End;
 
 
-//Функция заменяет все "." на ","
+//Р¤СѓРЅРєС†РёСЏ Р·Р°РјРµРЅСЏРµС‚ РІСЃРµ "." РЅР° ","
 function TF_main.ReplaceNumberSeparator(Text:String) : String;
 Begin
   Text := StringReplace(Text, '.', ',', [rfReplaceAll]);
@@ -166,7 +166,7 @@ Begin
 End;
 
 
-//Функция проверяет является ли переданная строка датой
+//Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРµСЂРµРґР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° РґР°С‚РѕР№
 function TF_main.IsDate(Text:String): Boolean;
   var dat:TDateTime;
 Begin
@@ -174,7 +174,7 @@ Begin
 End;
 
 
-//Функция проверяет является ли переданная строка типом float
+//Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂСЏРµС‚ СЏРІР»СЏРµС‚СЃСЏ Р»Рё РїРµСЂРµРґР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° С‚РёРїРѕРј float
 function TF_main.IsFloat(Text:String):Boolean;
   Var Mu:double;
 begin
@@ -182,64 +182,64 @@ begin
 End;
 
 
-//Процедура засовывает в таблицу массив фактов назначения мсз
+//РџСЂРѕС†РµРґСѓСЂР° Р·Р°СЃРѕРІС‹РІР°РµС‚ РІ С‚Р°Р±Р»РёС†Сѓ РјР°СЃСЃРёРІ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РјСЃР·
 procedure TF_Main.renderTableMszFact();
   var i,j : integer;
 Begin
-  //Обрабатываем массив
+  //РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РјР°СЃСЃРёРІ
   if (Length(massMszFact) > 0)  then
     begin
 
-      //Подготавливаем Грид
+      //РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р“СЂРёРґ
       SG_Fact.ColCount :=  14;
       SG_Fact.RowCount :=  Length(massMszFact) + 1;
 
       SG_Fact.FixedCols := 1;
       SG_Fact.FixedRows := 1;
 
-      //Назначаем ширины и заголовки столбцам
-        //Столбец номеров
+      //РќР°Р·РЅР°С‡Р°РµРј С€РёСЂРёРЅС‹ Рё Р·Р°РіРѕР»РѕРІРєРё СЃС‚РѕР»Р±С†Р°Рј
+        //РЎС‚РѕР»Р±РµС† РЅРѕРјРµСЂРѕРІ
         SG_Fact.ColWidths[0] := 60;
-        SG_Fact.Cells[0,0] := '№ п.п';
-        //Столбец СНИЛС
+        SG_Fact.Cells[0,0] := 'в„– Рї.Рї';
+        //РЎС‚РѕР»Р±РµС† РЎРќРР›РЎ
         SG_Fact.ColWidths[1] := 130;
-        SG_Fact.Cells[1,0] := 'Снилс';
-        //Столбец Фамилия
+        SG_Fact.Cells[1,0] := 'РЎРЅРёР»СЃ';
+        //РЎС‚РѕР»Р±РµС† Р¤Р°РјРёР»РёСЏ
         SG_Fact.ColWidths[2] := 150;
-        SG_Fact.Cells[2,0] := 'Фамилия';
-        //Столбец Имя
+        SG_Fact.Cells[2,0] := 'Р¤Р°РјРёР»РёСЏ';
+        //РЎС‚РѕР»Р±РµС† РРјСЏ
         SG_Fact.ColWidths[3] := 150;
-        SG_Fact.Cells[3,0] := 'Имя';
-        //Столбец Отчество
+        SG_Fact.Cells[3,0] := 'РРјСЏ';
+        //РЎС‚РѕР»Р±РµС† РћС‚С‡РµСЃС‚РІРѕ
         SG_Fact.ColWidths[4] := 150;
-        SG_Fact.Cells[4,0] := 'Отчество';
-        //Столбец Пол
+        SG_Fact.Cells[4,0] := 'РћС‚С‡РµСЃС‚РІРѕ';
+        //РЎС‚РѕР»Р±РµС† РџРѕР»
         SG_Fact.ColWidths[5] := 50;
-        SG_Fact.Cells[5,0] := 'Пол';
-        //Столбец Дата рождения
+        SG_Fact.Cells[5,0] := 'РџРѕР»';
+        //РЎС‚РѕР»Р±РµС† Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ
         SG_Fact.ColWidths[6] := 120;
-        SG_Fact.Cells[6,0] := 'Дата рождения';
-        //Столбец Дата решения о назначении
+        SG_Fact.Cells[6,0] := 'Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ';
+        //РЎС‚РѕР»Р±РµС† Р”Р°С‚Р° СЂРµС€РµРЅРёСЏ Рѕ РЅР°Р·РЅР°С‡РµРЅРёРё
         SG_Fact.ColWidths[7] := 120;
-        SG_Fact.Cells[7,0] := 'Дата решения';
-        //Столбец Дата начала действия
+        SG_Fact.Cells[7,0] := 'Р”Р°С‚Р° СЂРµС€РµРЅРёСЏ';
+        //РЎС‚РѕР»Р±РµС† Р”Р°С‚Р° РЅР°С‡Р°Р»Р° РґРµР№СЃС‚РІРёСЏ
         SG_Fact.ColWidths[8] := 120;
-        SG_Fact.Cells[8,0] := 'Дата начала';
-        //Столбец Дата окончания действия
+        SG_Fact.Cells[8,0] := 'Р”Р°С‚Р° РЅР°С‡Р°Р»Р°';
+        //РЎС‚РѕР»Р±РµС† Р”Р°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ
         SG_Fact.ColWidths[9] := 120;
-        SG_Fact.Cells[9,0] := 'Дата окончания';
-        //Столбец Мера
+        SG_Fact.Cells[9,0] := 'Р”Р°С‚Р° РѕРєРѕРЅС‡Р°РЅРёСЏ';
+        //РЎС‚РѕР»Р±РµС† РњРµСЂР°
         SG_Fact.ColWidths[10] := 200;
-        SG_Fact.Cells[10,0] := 'Мера';
-        //Столбец Сумма
+        SG_Fact.Cells[10,0] := 'РњРµСЂР°';
+        //РЎС‚РѕР»Р±РµС† РЎСѓРјРјР°
         SG_Fact.ColWidths[11] := 100;
-        SG_Fact.Cells[11,0] := 'Сумма';
-        //Столбец Идентификатор ЛМСЗ
+        SG_Fact.Cells[11,0] := 'РЎСѓРјРјР°';
+        //РЎС‚РѕР»Р±РµС† РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р›РњРЎР—
         SG_Fact.ColWidths[12] := 300;
-        SG_Fact.Cells[12,0] := 'Идентификатор ЛМСЗ';
-        //Столбец Идентификатор ЛМСЗ
+        SG_Fact.Cells[12,0] := 'РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р›РњРЎР—';
+        //РЎС‚РѕР»Р±РµС† РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р›РњРЎР—
         SG_Fact.ColWidths[13] := 300;
-        SG_Fact.Cells[13,0] := 'Идентификатор локальной категории';
+        SG_Fact.Cells[13,0] := 'РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°Р»СЊРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё';
 
 
       for i := Low(massMszFact) to High(massMszFact) do
@@ -264,21 +264,21 @@ Begin
 end;
 
 
-//Процедура преобразует данные из massMSZFact в формат CSV
+//РџСЂРѕС†РµРґСѓСЂР° РїСЂРµРѕР±СЂР°Р·СѓРµС‚ РґР°РЅРЅС‹Рµ РёР· massMSZFact РІ С„РѕСЂРјР°С‚ CSV
 procedure TF_Main.renderDataToCsv();
   var i:Integer;
       delimiter : String;
 begin
-  //Подготавливаем Memo
+  //РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Memo
   M_CSV.Clear;
   delimiter := ';';
 
-  //Пишем заголовок в ЛОГ
+  //РџРёС€РµРј Р·Р°РіРѕР»РѕРІРѕРє РІ Р›РћР“
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
-  RE_Log.Lines.Add('Экспорт файлов');
+  RE_Log.Lines.Add('Р­РєСЃРїРѕСЂС‚ С„Р°Р№Р»РѕРІ');
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
 
-  //Записываем первую строку
+  //Р—Р°РїРёСЃС‹РІР°РµРј РїРµСЂРІСѓСЋ СЃС‚СЂРѕРєСѓ
   M_CSV.Lines.Add('RecType;LMSZID;categoryID;ONMSZCode;SNILS_recip;FamilyName_recip;Name_recip;' +
   'Patronymic_recip;Gender_recip;BirthDate_recip;doctype_recip;doc_Series_recip;doc_Number_recip;' +
   'doc_IssueDate_recip;doc_Issuer_recip;SNILS_reason;FamilyName_reason;Name_reason;Patronymic_reason;' +
@@ -286,7 +286,7 @@ begin
   'doc_Issuer_reason;decision_date;dateStart;dateFinish;usingSign;criteria;FormCode;amount;measuryCode;' +
   'monetization;content;comment;equivalentAmount');
 
-  //Накапливаем строки с данными
+  //РќР°РєР°РїР»РёРІР°РµРј СЃС‚СЂРѕРєРё СЃ РґР°РЅРЅС‹РјРё
   for i := Low(massMszFact) to High(massMszFact) do
     begin
       M_CSV.Lines.Add(
@@ -301,130 +301,130 @@ begin
 
       massMszFact[i, massMSZFactGender] + delimiter +
       massMszFact[i, massMSZFactBirthDate] +
-      delimiter + delimiter + delimiter + delimiter + delimiter +   //Прибавляем 17 точек с запятой
+      delimiter + delimiter + delimiter + delimiter + delimiter +   //РџСЂРёР±Р°РІР»СЏРµРј 17 С‚РѕС‡РµРє СЃ Р·Р°РїСЏС‚РѕР№
       delimiter + delimiter + delimiter + delimiter + delimiter +
       delimiter + delimiter + delimiter + delimiter + delimiter +
       delimiter + delimiter +
       massMszFact[i, massMSZFactDecisionDate] + delimiter +
       massMszFact[i, massMSZFactDateStart] + delimiter +
       massMszFact[i, massMSZFactDateFinish] + delimiter +
-      'Нет' + delimiter + delimiter + '01' + delimiter +
+      'РќРµС‚' + delimiter + delimiter + '01' + delimiter +
       massMszFact[i, massMSZFactAmount] + delimiter +
       '1' + delimiter + '0' + delimiter + delimiter + delimiter);
     end;
 
-  //Выгружаем данные в csv файл
+  //Р’С‹РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ РІ csv С„Р°Р№Р»
   if (DirectoryExists(XlsxFileDir + '\csv') <> true) then
-    ForceDirectories(XlsxFileDir + '\csv'); //Если нужной папки нет - создаём.
+    ForceDirectories(XlsxFileDir + '\csv'); //Р•СЃР»Рё РЅСѓР¶РЅРѕР№ РїР°РїРєРё РЅРµС‚ - СЃРѕР·РґР°С‘Рј.
 
   if (DirectoryExists(XlsxFileDir + '\csv') <> true) then
-    M_Error.Lines.Add('Не удаётся создать папку ' + XlsxFileDir + '\csv ;'); //Пишем лог что не получилось создать папку
+    M_Error.Lines.Add('РќРµ СѓРґР°С‘С‚СЃСЏ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ ' + XlsxFileDir + '\csv ;'); //РџРёС€РµРј Р»РѕРі С‡С‚Рѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ
 
-  if (M_Error.Text = '') then //Если на предыдущих этапах не было критических ошибок
+  if (M_Error.Text = '') then //Р•СЃР»Рё РЅР° РїСЂРµРґС‹РґСѓС‰РёС… СЌС‚Р°РїР°С… РЅРµ Р±С‹Р»Рѕ РєСЂРёС‚РёС‡РµСЃРєРёС… РѕС€РёР±РѕРє
     Begin
-      //Удаляем файл если он существует
+      //РЈРґР°Р»СЏРµРј С„Р°Р№Р» РµСЃР»Рё РѕРЅ СЃСѓС‰РµСЃС‚РІСѓРµС‚
       if (FileExists(XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv') = true) then
         DeleteFile((XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv'));
 
       if (FileExists(XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv') <> true) then
         Begin
           M_CSV.Lines.SaveToFile(XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv');
-          RE_Log.Lines.Add(textIdent + 'Данные выгружены в файл ' + XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv; ');
+          RE_Log.Lines.Add(textIdent + 'Р”Р°РЅРЅС‹Рµ РІС‹РіСЂСѓР¶РµРЅС‹ РІ С„Р°Р№Р» ' + XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv; ');
         end
       else
-        M_Error.Lines.Add('Не удаётся создать файл ' + XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv'); //Пишем лог что не получилось создать файл
+        M_Error.Lines.Add('РќРµ СѓРґР°С‘С‚СЃСЏ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р» ' + XlsxFileDir + '\csv\' + XlsxFileNameNoExt + '.csv'); //РџРёС€РµРј Р»РѕРі С‡С‚Рѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р»
     End;
 
 
 
-  //Выгружаем логи в файлы-логи
+  //Р’С‹РіСЂСѓР¶Р°РµРј Р»РѕРіРё РІ С„Р°Р№Р»С‹-Р»РѕРіРё
   if (DirectoryExists(XlsxFileDir + '\log') <> true) then
-    ForceDirectories(XlsxFileDir + '\log'); //Если нужной папки нет - создаём.
+    ForceDirectories(XlsxFileDir + '\log'); //Р•СЃР»Рё РЅСѓР¶РЅРѕР№ РїР°РїРєРё РЅРµС‚ - СЃРѕР·РґР°С‘Рј.
 
   if (DirectoryExists(XlsxFileDir + '\log') <> true) then
-    M_Error.Lines.Add('Не удаётся создать папку ' + XlsxFileDir + '\log ;'); //Пишем лог что не получилось создать папку
+    M_Error.Lines.Add('РќРµ СѓРґР°С‘С‚СЃСЏ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ ' + XlsxFileDir + '\log ;'); //РџРёС€РµРј Р»РѕРі С‡С‚Рѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ
 
-  if (M_Error.Text = '') then //Если на предыдущих этапах не было критических ошибок
+  if (M_Error.Text = '') then //Р•СЃР»Рё РЅР° РїСЂРµРґС‹РґСѓС‰РёС… СЌС‚Р°РїР°С… РЅРµ Р±С‹Р»Рѕ РєСЂРёС‚РёС‡РµСЃРєРёС… РѕС€РёР±РѕРє
     Begin
-      //Удаляем файл если он существует
+      //РЈРґР°Р»СЏРµРј С„Р°Р№Р» РµСЃР»Рё РѕРЅ СЃСѓС‰РµСЃС‚РІСѓРµС‚
       if (FileExists(XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log') = true) then
         DeleteFile((XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log'));
 
       if (FileExists(XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log') <> true) then
         Begin
-          RE_Log.Lines.Add(textIdent + 'Логи выгружены в файл ' + XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log; ');
+          RE_Log.Lines.Add(textIdent + 'Р›РѕРіРё РІС‹РіСЂСѓР¶РµРЅС‹ РІ С„Р°Р№Р» ' + XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log; ');
           RE_Log.Lines.SaveToFile(XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log');
         end
       else
-        M_Error.Lines.Add('Не удаётся создать файл ' + XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log'); //Пишем лог что не получилось создать файл
+        M_Error.Lines.Add('РќРµ СѓРґР°С‘С‚СЃСЏ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р» ' + XlsxFileDir + '\log\' + XlsxFileNameNoExt + '.log'); //РџРёС€РµРј Р»РѕРі С‡С‚Рѕ РЅРµ РїРѕР»СѓС‡РёР»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р»
     End;
 
 end;
 
 
-//Процедура загружает данные в массивы из указанного файла
+//РџСЂРѕС†РµРґСѓСЂР° Р·Р°РіСЂСѓР¶Р°РµС‚ РґР°РЅРЅС‹Рµ РІ РјР°СЃСЃРёРІС‹ РёР· СѓРєР°Р·Р°РЅРЅРѕРіРѕ С„Р°Р№Р»Р°
 procedure TF_main.getData(xlsxFilePath:String);
   const
     xlCellTypeLastCell = $0000000B;
   var
-    //Переменые для работы с файлом xlsx
+    //РџРµСЂРµРјРµРЅС‹Рµ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»РѕРј xlsx
     ExcelApp, ExcelSheet: OLEVariant;
     MyMass: Variant;
     i, x, y: Integer;
 
-    BadLinesMsz : String; //Хранит номера некорретно заполненных строк справочника мер
-    BadLinesOrg : String; //Хранит номера некорретно заполненных строк справочника учреждений
-    BadLinesFact : String; //Хранит номера некорретно заполненных строк реестра фактов назначения МСЗ
+    BadLinesMsz : String; //РҐСЂР°РЅРёС‚ РЅРѕРјРµСЂР° РЅРµРєРѕСЂСЂРµС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅРЅС‹С… СЃС‚СЂРѕРє СЃРїСЂР°РІРѕС‡РЅРёРєР° РјРµСЂ
+    BadLinesOrg : String; //РҐСЂР°РЅРёС‚ РЅРѕРјРµСЂР° РЅРµРєРѕСЂСЂРµС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅРЅС‹С… СЃС‚СЂРѕРє СЃРїСЂР°РІРѕС‡РЅРёРєР° СѓС‡СЂРµР¶РґРµРЅРёР№
+    BadLinesFact : String; //РҐСЂР°РЅРёС‚ РЅРѕРјРµСЂР° РЅРµРєРѕСЂСЂРµС‚РЅРѕ Р·Р°РїРѕР»РЅРµРЅРЅС‹С… СЃС‚СЂРѕРє СЂРµРµСЃС‚СЂР° С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—
 
 Begin
-  //Подготовка переменных
+  //РџРѕРґРіРѕС‚РѕРІРєР° РїРµСЂРµРјРµРЅРЅС‹С…
   BadLinesMsz := '';
   BadLinesOrg := '';
   BadLinesFact := '';
 
 
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
-  RE_Log.Lines.Add('Загрузка данных из файла ' + xlsxFilePath);
+  RE_Log.Lines.Add('Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р° ' + xlsxFilePath);
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
 
 
 
-  //создание OLE-объекта Excel
-  RE_Log.Lines.Add(textIdent + 'Открытие файла...');
+  //СЃРѕР·РґР°РЅРёРµ OLE-РѕР±СЉРµРєС‚Р° Excel
+  RE_Log.Lines.Add(textIdent + 'РћС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°...');
   ExcelApp := CreateOleObject('Excel.Application');
-  //открытие книги Excel
-  RE_Log.Lines.Add(textIdent + 'Открытие книги...');
+  //РѕС‚РєСЂС‹С‚РёРµ РєРЅРёРіРё Excel
+  RE_Log.Lines.Add(textIdent + 'РћС‚РєСЂС‹С‚РёРµ РєРЅРёРіРё...');
   ExcelApp.Workbooks.Open(xlsxFilePath);
 
 
   RE_Log.Lines.Add('');
-  RE_Log.Lines.Add(textIdent + 'Чтение справочника организаций');
+  RE_Log.Lines.Add(textIdent + 'Р§С‚РµРЅРёРµ СЃРїСЂР°РІРѕС‡РЅРёРєР° РѕСЂРіР°РЅРёР·Р°С†РёР№');
   RE_Log.Lines.Add(textIdent + '------------------------------------------------------------------------------');
 
-      // открытие листа книги
-      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Спр.Организаций'].Activate;
-      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Спр.Организаций'];
+      // РѕС‚РєСЂС‹С‚РёРµ Р»РёСЃС‚Р° РєРЅРёРіРё
+      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РЎРїСЂ.РћСЂРіР°РЅРёР·Р°С†РёР№'].Activate;
+      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РЎРїСЂ.РћСЂРіР°РЅРёР·Р°С†РёР№'];
 
-      // выделение последней задействованной ячейки на листе
+      // РІС‹РґРµР»РµРЅРёРµ РїРѕСЃР»РµРґРЅРµР№ Р·Р°РґРµР№СЃС‚РІРѕРІР°РЅРЅРѕР№ СЏС‡РµР№РєРё РЅР° Р»РёСЃС‚Рµ
       ExcelSheet.Cells.SpecialCells(xlCellTypeLastCell).Activate;
 
-      // получение значений размера выбранного диапазона
+      // РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЂР°Р·РјРµСЂР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
       x := ExcelApp.ActiveCell.Row;
       y := ExcelApp.ActiveCell.Column;
 
-      // присвоение массиву диапазона ячеек на листе
+      // РїСЂРёСЃРІРѕРµРЅРёРµ РјР°СЃСЃРёРІСѓ РґРёР°РїР°Р·РѕРЅР° СЏС‡РµРµРє РЅР° Р»РёСЃС‚Рµ
       MyMass := ExcelApp.Range['A1', ExcelApp.Cells.Item[X, Y]].Value;
 
-      //Переносим данные в новый массив
-      SetLength(massOrgList, 0); //Задаём нулевую размерность массива
-      for i := 2 to x do  //Начиная со второй строки перебираем всё что осталось
+      //РџРµСЂРµРЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РІ РЅРѕРІС‹Р№ РјР°СЃСЃРёРІ
+      SetLength(massOrgList, 0); //Р—Р°РґР°С‘Рј РЅСѓР»РµРІСѓСЋ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
+      for i := 2 to x do  //РќР°С‡РёРЅР°СЏ СЃРѕ РІС‚РѕСЂРѕР№ СЃС‚СЂРѕРєРё РїРµСЂРµР±РёСЂР°РµРј РІСЃС‘ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ
         begin
-          if ((VarToStr(MyMass[i, 1])<> '') and (VarToStr(MyMass[i, 2])<> '') and (VarToStr(MyMass[i, 3])<> '')) then  //Если первый и второй и третий столбцы заполнены
+          if ((VarToStr(MyMass[i, 1])<> '') and (VarToStr(MyMass[i, 2])<> '') and (VarToStr(MyMass[i, 3])<> '')) then  //Р•СЃР»Рё РїРµСЂРІС‹Р№ Рё РІС‚РѕСЂРѕР№ Рё С‚СЂРµС‚РёР№ СЃС‚РѕР»Р±С†С‹ Р·Р°РїРѕР»РЅРµРЅС‹
             Begin
-              SetLength(massOrgList,Length(massOrgList) + 1); //Добавляем ещё одну строку
-              SetLength(massOrgList[High(massOrgList)], 2); //В добавленной строке (Последней по счёту) задаём размерность 2 столбца
-              massOrgList[High(massOrgList), massOrgListKratName] := MyMass[i, 2]; //Записываем название
-              massOrgList[High(massOrgList), massOrgListONMSZCode] := MyMass[i, 3];   //Записываем код LMSZID
+              SetLength(massOrgList,Length(massOrgList) + 1); //Р”РѕР±Р°РІР»СЏРµРј РµС‰С‘ РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ
+              SetLength(massOrgList[High(massOrgList)], 2); //Р’ РґРѕР±Р°РІР»РµРЅРЅРѕР№ СЃС‚СЂРѕРєРµ (РџРѕСЃР»РµРґРЅРµР№ РїРѕ СЃС‡С‘С‚Сѓ) Р·Р°РґР°С‘Рј СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ 2 СЃС‚РѕР»Р±С†Р°
+              massOrgList[High(massOrgList), massOrgListKratName] := MyMass[i, 2]; //Р—Р°РїРёСЃС‹РІР°РµРј РЅР°Р·РІР°РЅРёРµ
+              massOrgList[High(massOrgList), massOrgListONMSZCode] := MyMass[i, 3];   //Р—Р°РїРёСЃС‹РІР°РµРј РєРѕРґ LMSZID
             End
           else
             Begin
@@ -433,53 +433,53 @@ Begin
 
         end;
 
-      //Выводим в логи количество найденных учреждений
-      RE_Log.Lines.Add(textIdent + 'Всего найдено учреждений: ' + IntToStr(Length(massOrgList)));
+      //Р’С‹РІРѕРґРёРј РІ Р»РѕРіРё РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… СѓС‡СЂРµР¶РґРµРЅРёР№
+      RE_Log.Lines.Add(textIdent + 'Р’СЃРµРіРѕ РЅР°Р№РґРµРЅРѕ СѓС‡СЂРµР¶РґРµРЅРёР№: ' + IntToStr(Length(massOrgList)));
 
-      //Выводим список учреждений
+      //Р’С‹РІРѕРґРёРј СЃРїРёСЃРѕРє СѓС‡СЂРµР¶РґРµРЅРёР№
       for i := Low(massOrgList) to High(massOrgList) do
         Begin
           RE_Log.Lines.Add(textIdent + IntToStr(i+1) + ')   ' + massOrgList[i,massOrgListKratName] + '   (ONMSZCode: ' +  massOrgList[i,massOrgListONMSZCode] + ');');
         end;
 
-      //Заполняем список ошибок
+      //Р—Р°РїРѕР»РЅСЏРµРј СЃРїРёСЃРѕРє РѕС€РёР±РѕРє
       if (BadLinesOrg <> '') then
-          M_Info.Lines.Add('Справочник организаций содержит некорректные строки (' + BadLinesOrg + '); ');
+          M_Info.Lines.Add('РЎРїСЂР°РІРѕС‡РЅРёРє РѕСЂРіР°РЅРёР·Р°С†РёР№ СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЃС‚СЂРѕРєРё (' + BadLinesOrg + '); ');
 
   RE_Log.Lines.Add('');
 
 
 
   RE_Log.Lines.Add('');
-  RE_Log.Lines.Add(textIdent + 'Чтение справочника мер');
+  RE_Log.Lines.Add(textIdent + 'Р§С‚РµРЅРёРµ СЃРїСЂР°РІРѕС‡РЅРёРєР° РјРµСЂ');
   RE_Log.Lines.Add(textIdent + '------------------------------------------------------------------------------');
 
-      // открытие листа книги
-      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Спр.Меры'].Activate;
-      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Спр.Меры'];
+      // РѕС‚РєСЂС‹С‚РёРµ Р»РёСЃС‚Р° РєРЅРёРіРё
+      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РЎРїСЂ.РњРµСЂС‹'].Activate;
+      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РЎРїСЂ.РњРµСЂС‹'];
 
-      // выделение последней задействованной ячейки на листе
+      // РІС‹РґРµР»РµРЅРёРµ РїРѕСЃР»РµРґРЅРµР№ Р·Р°РґРµР№СЃС‚РІРѕРІР°РЅРЅРѕР№ СЏС‡РµР№РєРё РЅР° Р»РёСЃС‚Рµ
       ExcelSheet.Cells.SpecialCells(xlCellTypeLastCell).Activate;
 
-      // получение значений размера выбранного диапазона
+      // РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЂР°Р·РјРµСЂР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
       x := ExcelApp.ActiveCell.Row;
       y := ExcelApp.ActiveCell.Column;
 
-      // присвоение массиву диапазона ячеек на листе
+      // РїСЂРёСЃРІРѕРµРЅРёРµ РјР°СЃСЃРёРІСѓ РґРёР°РїР°Р·РѕРЅР° СЏС‡РµРµРє РЅР° Р»РёСЃС‚Рµ
       MyMass := ExcelApp.Range['A1', ExcelApp.Cells.Item[X, Y]].Value;
 
-      //Перерабатываем найденные данные в нормальный массив
-      SetLength(massMszList,0); //Задаём нулевую размерность массива
-      for i := 2 to x do  //Начиная со второй строки перебираем всё что осталось
+      //РџРµСЂРµСЂР°Р±Р°С‚С‹РІР°РµРј РЅР°Р№РґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РјР°СЃСЃРёРІ
+      SetLength(massMszList,0); //Р—Р°РґР°С‘Рј РЅСѓР»РµРІСѓСЋ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
+      for i := 2 to x do  //РќР°С‡РёРЅР°СЏ СЃРѕ РІС‚РѕСЂРѕР№ СЃС‚СЂРѕРєРё РїРµСЂРµР±РёСЂР°РµРј РІСЃС‘ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ
         begin
           if ((VarToStr(MyMass[i, 1])<> '') and (VarToStr(MyMass[i, 2])<> '') and (VarToStr(MyMass[i, 3])<> '') and (VarToStr(MyMass[i, 4])<> '')) then
             begin
-              SetLength(massMszList,Length(massMszList) + 1); //Добавляем ещё одну строку
-              SetLength(massMszList[High(massMszList)], 4); //В добавленной строке (Последней по счёту) задаём размерность 4 столбца
-              massMszList[High(massMszList), massMszListKratName] := MyMass[i, 2]; //Записываем название
-              massMszList[High(massMszList), massMszListLmszID] := MyMass[i, 3];   //Записываем код LMSZID
-              massMszList[High(massMszList), massMszListСategoryID] := MyMass[i, 4];    //Записываем код categoryID
-              massMszList[High(massMszList), massMszListSumm] := '0'; //Записываем ноль чтобы потом корректно приобразовать его в число и накапливать сумму
+              SetLength(massMszList,Length(massMszList) + 1); //Р”РѕР±Р°РІР»СЏРµРј РµС‰С‘ РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ
+              SetLength(massMszList[High(massMszList)], 4); //Р’ РґРѕР±Р°РІР»РµРЅРЅРѕР№ СЃС‚СЂРѕРєРµ (РџРѕСЃР»РµРґРЅРµР№ РїРѕ СЃС‡С‘С‚Сѓ) Р·Р°РґР°С‘Рј СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ 4 СЃС‚РѕР»Р±С†Р°
+              massMszList[High(massMszList), massMszListKratName] := MyMass[i, 2]; //Р—Р°РїРёСЃС‹РІР°РµРј РЅР°Р·РІР°РЅРёРµ
+              massMszList[High(massMszList), massMszListLmszID] := MyMass[i, 3];   //Р—Р°РїРёСЃС‹РІР°РµРј РєРѕРґ LMSZID
+              massMszList[High(massMszList), massMszListРЎategoryID] := MyMass[i, 4];    //Р—Р°РїРёСЃС‹РІР°РµРј РєРѕРґ categoryID
+              massMszList[High(massMszList), massMszListSumm] := '0'; //Р—Р°РїРёСЃС‹РІР°РµРј РЅРѕР»СЊ С‡С‚РѕР±С‹ РїРѕС‚РѕРј РєРѕСЂСЂРµРєС‚РЅРѕ РїСЂРёРѕР±СЂР°Р·РѕРІР°С‚СЊ РµРіРѕ РІ С‡РёСЃР»Рѕ Рё РЅР°РєР°РїР»РёРІР°С‚СЊ СЃСѓРјРјСѓ
             end
           else
             Begin
@@ -487,44 +487,44 @@ Begin
             End;
         end;
 
-      //Выводим в логи количество найденных мер
-      RE_Log.Lines.Add(textIdent + 'Всего найдено мер: ' + IntToStr(Length(massMszList)));
+      //Р’С‹РІРѕРґРёРј РІ Р»РѕРіРё РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… РјРµСЂ
+      RE_Log.Lines.Add(textIdent + 'Р’СЃРµРіРѕ РЅР°Р№РґРµРЅРѕ РјРµСЂ: ' + IntToStr(Length(massMszList)));
 
-      //Выводим в логи список найденных мер
+      //Р’С‹РІРѕРґРёРј РІ Р»РѕРіРё СЃРїРёСЃРѕРє РЅР°Р№РґРµРЅРЅС‹С… РјРµСЂ
       for i := Low(massMszList) to High(massMszList) do
         Begin
-          RE_Log.Lines.Add(textIdent + IntToStr(i+1) + ')   '+  massMszList[i,massMszListKratName] + '   (LMSZID:' +  massMszList[i,massMszListLmszID] + ', categoryID:' + massMszList[i,massMszListСategoryID] + ');');
+          RE_Log.Lines.Add(textIdent + IntToStr(i+1) + ')   '+  massMszList[i,massMszListKratName] + '   (LMSZID:' +  massMszList[i,massMszListLmszID] + ', categoryID:' + massMszList[i,massMszListРЎategoryID] + ');');
         end;
 
-      //Заполняем список ошибок
+      //Р—Р°РїРѕР»РЅСЏРµРј СЃРїРёСЃРѕРє РѕС€РёР±РѕРє
       if (BadLinesMsz <> '') then
-          M_Info.Lines.Add('Справочник мер содержит некорректные строки (' + BadLinesMsz + '); ');
+          M_Info.Lines.Add('РЎРїСЂР°РІРѕС‡РЅРёРє РјРµСЂ СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЃС‚СЂРѕРєРё (' + BadLinesMsz + '); ');
 
   RE_Log.Lines.Add('');
 
 
 
   RE_Log.Lines.Add('');
-  RE_Log.Lines.Add(textIdent + 'Чтение реестра фактов назначения МСЗ');
+  RE_Log.Lines.Add(textIdent + 'Р§С‚РµРЅРёРµ СЂРµРµСЃС‚СЂР° С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—');
   RE_Log.Lines.Add(textIdent + '------------------------------------------------------------------------------');
 
-      // открытие листа книги
-      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Реестр фактов назначения МСЗ'].Activate;
-      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Реестр фактов назначения МСЗ'];
+      // РѕС‚РєСЂС‹С‚РёРµ Р»РёСЃС‚Р° РєРЅРёРіРё
+      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Р РµРµСЃС‚СЂ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—'].Activate;
+      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Р РµРµСЃС‚СЂ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—'];
 
-      // выделение последней задействованной ячейки на листе
+      // РІС‹РґРµР»РµРЅРёРµ РїРѕСЃР»РµРґРЅРµР№ Р·Р°РґРµР№СЃС‚РІРѕРІР°РЅРЅРѕР№ СЏС‡РµР№РєРё РЅР° Р»РёСЃС‚Рµ
       ExcelSheet.Cells.SpecialCells(xlCellTypeLastCell).Activate;
 
-      // получение значений размера выбранного диапазона
+      // РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЂР°Р·РјРµСЂР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
       x := ExcelApp.ActiveCell.Row;
       y := ExcelApp.ActiveCell.Column;
 
-      // присвоение массиву диапазона ячеек на листе
+      // РїСЂРёСЃРІРѕРµРЅРёРµ РјР°СЃСЃРёРІСѓ РґРёР°РїР°Р·РѕРЅР° СЏС‡РµРµРє РЅР° Р»РёСЃС‚Рµ
       MyMass := ExcelApp.Range['A1', ExcelApp.Cells.Item[X, Y]].Value;
 
-      //Перерабатываем найденные данные в нормальный массив
-      SetLength(massMszFact,0); //Задаём нулевую размерность массива
-      for i := 2 to x do  //Начиная со второй строки перебираем всё что осталось
+      //РџРµСЂРµСЂР°Р±Р°С‚С‹РІР°РµРј РЅР°Р№РґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РјР°СЃСЃРёРІ
+      SetLength(massMszFact,0); //Р—Р°РґР°С‘Рј РЅСѓР»РµРІСѓСЋ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
+      for i := 2 to x do  //РќР°С‡РёРЅР°СЏ СЃРѕ РІС‚РѕСЂРѕР№ СЃС‚СЂРѕРєРё РїРµСЂРµР±РёСЂР°РµРј РІСЃС‘ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ
         begin
           if (
             (VarToStr(MyMass[i, 1])<> '') and (VarToStr(MyMass[i, 2])<> '') and (VarToStr(MyMass[i, 3])<> '') and
@@ -533,19 +533,19 @@ Begin
             (VarToStr(MyMass[i, 10])<> '') and (VarToStr(MyMass[i, 11])<> '') and (VarToStr(MyMass[i, 12])<> '')
           ) then
             begin
-              SetLength(massMszFact,Length(massMszFact) + 1); //Добавляем ещё одну строку
-              SetLength(massMszFact[High(massMszFact)], 13); //В добавленной строке (Последней по счёту) задаём размерность 13 столбцов
-              massMszFact[High(massMszFact), massMSZFactSNILS] := MyMass[i, 2]; //Записываем название
-              massMszFact[High(massMszFact), massMSZFactFamily] := MyMass[i, 3];   //Записываем код LMSZID
-              massMszFact[High(massMszFact), massMSZFactName] := MyMass[i, 4];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactSurname] := MyMass[i, 5];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactGender] := MyMass[i, 6];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactBirthDate] := MyMass[i, 7];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactDecisionDate] := MyMass[i, 8];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactDateStart] := MyMass[i, 9];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactDateFinish] := MyMass[i, 10];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactLMSZName] := MyMass[i, 11];    //Записываем
-              massMszFact[High(massMszFact), massMSZFactAmount] := MyMass[i, 12];    //Записываем
+              SetLength(massMszFact,Length(massMszFact) + 1); //Р”РѕР±Р°РІР»СЏРµРј РµС‰С‘ РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ
+              SetLength(massMszFact[High(massMszFact)], 13); //Р’ РґРѕР±Р°РІР»РµРЅРЅРѕР№ СЃС‚СЂРѕРєРµ (РџРѕСЃР»РµРґРЅРµР№ РїРѕ СЃС‡С‘С‚Сѓ) Р·Р°РґР°С‘Рј СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ 13 СЃС‚РѕР»Р±С†РѕРІ
+              massMszFact[High(massMszFact), massMSZFactSNILS] := MyMass[i, 2]; //Р—Р°РїРёСЃС‹РІР°РµРј РЅР°Р·РІР°РЅРёРµ
+              massMszFact[High(massMszFact), massMSZFactFamily] := MyMass[i, 3];   //Р—Р°РїРёСЃС‹РІР°РµРј РєРѕРґ LMSZID
+              massMszFact[High(massMszFact), massMSZFactName] := MyMass[i, 4];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactSurname] := MyMass[i, 5];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactGender] := MyMass[i, 6];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactBirthDate] := MyMass[i, 7];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactDecisionDate] := MyMass[i, 8];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactDateStart] := MyMass[i, 9];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactDateFinish] := MyMass[i, 10];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactLMSZName] := MyMass[i, 11];    //Р—Р°РїРёСЃС‹РІР°РµРј
+              massMszFact[High(massMszFact), massMSZFactAmount] := MyMass[i, 12];    //Р—Р°РїРёСЃС‹РІР°РµРј
             end
           else
             Begin
@@ -553,38 +553,38 @@ Begin
             End;
         end;
 
-      //Выводим в логи количество найденных фактов
-      RE_Log.Lines.Add(textIdent + 'Всего найдено фактов назначения МСЗ: ' + IntToStr(Length(massMszFact)));
+      //Р’С‹РІРѕРґРёРј РІ Р»РѕРіРё РєРѕР»РёС‡РµСЃС‚РІРѕ РЅР°Р№РґРµРЅРЅС‹С… С„Р°РєС‚РѕРІ
+      RE_Log.Lines.Add(textIdent + 'Р’СЃРµРіРѕ РЅР°Р№РґРµРЅРѕ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—: ' + IntToStr(Length(massMszFact)));
 
-      //Заполняем список ошибок
+      //Р—Р°РїРѕР»РЅСЏРµРј СЃРїРёСЃРѕРє РѕС€РёР±РѕРє
       if (BadLinesFact <> '') then
-          M_Info.Lines.Add('Реестр фактов назначения МСЗ содержит некорректные строки (' + BadLinesFact + '); ');
+          M_Info.Lines.Add('Р РµРµСЃС‚СЂ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР— СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ СЃС‚СЂРѕРєРё (' + BadLinesFact + '); ');
 
   RE_Log.Lines.Add('');
 
 
 
   RE_Log.Lines.Add('');
-  RE_Log.Lines.Add(textIdent + 'Чтение титульного листа');
+  RE_Log.Lines.Add(textIdent + 'Р§С‚РµРЅРёРµ С‚РёС‚СѓР»СЊРЅРѕРіРѕ Р»РёСЃС‚Р°');
   RE_Log.Lines.Add(textIdent + '------------------------------------------------------------------------------');
 
-      // открытие листа книги
-      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Титульный'].Activate;
-      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['Титульный'];
+      // РѕС‚РєСЂС‹С‚РёРµ Р»РёСЃС‚Р° РєРЅРёРіРё
+      ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РўРёС‚СѓР»СЊРЅС‹Р№'].Activate;
+      ExcelSheet := ExcelApp.Workbooks[ExtractFileName(xlsxFilePath)].WorkSheets['РўРёС‚СѓР»СЊРЅС‹Р№'];
 
-      // выделение последней задействованной ячейки на листе
+      // РІС‹РґРµР»РµРЅРёРµ РїРѕСЃР»РµРґРЅРµР№ Р·Р°РґРµР№СЃС‚РІРѕРІР°РЅРЅРѕР№ СЏС‡РµР№РєРё РЅР° Р»РёСЃС‚Рµ
       ExcelSheet.Cells.SpecialCells(xlCellTypeLastCell).Activate;
 
-      // получение значений размера выбранного диапазона
+      // РїРѕР»СѓС‡РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЂР°Р·РјРµСЂР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°
       x := ExcelApp.ActiveCell.Row;
       y := ExcelApp.ActiveCell.Column;
 
-      // присвоение массиву диапазона ячеек на листе
+      // РїСЂРёСЃРІРѕРµРЅРёРµ РјР°СЃСЃРёРІСѓ РґРёР°РїР°Р·РѕРЅР° СЏС‡РµРµРє РЅР° Р»РёСЃС‚Рµ
       MyMass := ExcelApp.Range['A1', ExcelApp.Cells.Item[X, Y]].Value;
 
-      //Задаём размер массива
+      //Р—Р°РґР°С‘Рј СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°
       SetLength(orgInfo,8);
-      //Вписываем данные
+      //Р’РїРёСЃС‹РІР°РµРј РґР°РЅРЅС‹Рµ
       orgInfo[orgInfoName] := MyMass[1, 2];
       orgInfo[orgInfoYear] := MyMass[2, 2];
       orgInfo[orgInfoMonth] := MyMass[3, 2];
@@ -593,24 +593,24 @@ Begin
       orgInfo[orgInfoSpecialMarks] := MyMass[6, 2];
       orgInfo[orgInfoTemplateVersion] := MyMass[7, 2];
 
-      //Выводим содержимое массива в логи
-      RE_Log.Lines.Add(textIdent + 'Название организации: ' + orgInfo[orgInfoName]);
-      RE_Log.Lines.Add(textIdent + 'Отчётный год: ' + orgInfo[orgInfoYear]);
-      RE_Log.Lines.Add(textIdent + 'Отчётный месяц: ' + orgInfo[orgInfoMonth]);
-      RE_Log.Lines.Add(textIdent + 'ФИО ответственного: ' + orgInfo[orgInfoFio]);
-      RE_Log.Lines.Add(textIdent + 'Телефон ответственного: ' + orgInfo[orgInfoPhone]);
-      RE_Log.Lines.Add(textIdent + 'Особые отметки: ' + orgInfo[orgInfoSpecialMarks]);
-      RE_Log.Lines.Add(textIdent + 'Версия шаблона: ' + orgInfo[orgInfoTemplateVersion]);
-      //RE_Log.Lines.Add(textIdent + 'Код ONMSZ орагнизации: ' + orgInfo[orgInfoONMSZCode]);
+      //Р’С‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ РјР°СЃСЃРёРІР° РІ Р»РѕРіРё
+      RE_Log.Lines.Add(textIdent + 'РќР°Р·РІР°РЅРёРµ РѕСЂРіР°РЅРёР·Р°С†РёРё: ' + orgInfo[orgInfoName]);
+      RE_Log.Lines.Add(textIdent + 'РћС‚С‡С‘С‚РЅС‹Р№ РіРѕРґ: ' + orgInfo[orgInfoYear]);
+      RE_Log.Lines.Add(textIdent + 'РћС‚С‡С‘С‚РЅС‹Р№ РјРµСЃСЏС†: ' + orgInfo[orgInfoMonth]);
+      RE_Log.Lines.Add(textIdent + 'Р¤РРћ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕРіРѕ: ' + orgInfo[orgInfoFio]);
+      RE_Log.Lines.Add(textIdent + 'РўРµР»РµС„РѕРЅ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕРіРѕ: ' + orgInfo[orgInfoPhone]);
+      RE_Log.Lines.Add(textIdent + 'РћСЃРѕР±С‹Рµ РѕС‚РјРµС‚РєРё: ' + orgInfo[orgInfoSpecialMarks]);
+      RE_Log.Lines.Add(textIdent + 'Р’РµСЂСЃРёСЏ С€Р°Р±Р»РѕРЅР°: ' + orgInfo[orgInfoTemplateVersion]);
+      //RE_Log.Lines.Add(textIdent + 'РљРѕРґ ONMSZ РѕСЂР°РіРЅРёР·Р°С†РёРё: ' + orgInfo[orgInfoONMSZCode]);
 
   RE_Log.Lines.Add('');
 
 
-  //закрытие книги
-  RE_Log.Lines.Add(textIdent + 'Закрытие файла.');
+  //Р·Р°РєСЂС‹С‚РёРµ РєРЅРёРіРё
+  RE_Log.Lines.Add(textIdent + 'Р—Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°.');
   ExcelApp.Quit;
 
-  //отчистка переменных
+  //РѕС‚С‡РёСЃС‚РєР° РїРµСЂРµРјРµРЅРЅС‹С…
   ExcelApp := Unassigned;
   ExcelSheet := Unassigned;
   MyMass := Unassigned;
@@ -621,22 +621,22 @@ Begin
 End;
 
 
-//Процедура проверяет данные об организации и подбирает код текущей организации
+//РџСЂРѕС†РµРґСѓСЂР° РїСЂРѕРІРµСЂСЏРµС‚ РґР°РЅРЅС‹Рµ РѕР± РѕСЂРіР°РЅРёР·Р°С†РёРё Рё РїРѕРґР±РёСЂР°РµС‚ РєРѕРґ С‚РµРєСѓС‰РµР№ РѕСЂРіР°РЅРёР·Р°С†РёРё
 procedure TF_main.processingOrgInfo;
   var i : integer;
 begin
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
-  RE_Log.Lines.Add('Обработка титульного листа ');
+  RE_Log.Lines.Add('РћР±СЂР°Р±РѕС‚РєР° С‚РёС‚СѓР»СЊРЅРѕРіРѕ Р»РёСЃС‚Р° ');
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
 
-  //Проверка версии шаблона
+  //РџСЂРѕРІРµСЂРєР° РІРµСЂСЃРёРё С€Р°Р±Р»РѕРЅР°
   if (orgInfo[orgInfoTemplateVersion] <> VersionTemplate) then
-    M_Error.Lines.Add('Версия открываемого файла-шаблона (' + orgInfo[orgInfoTemplateVersion] + ') и версия файла-шаблона для которого предназначена эта программа (' + VersionTemplate + ') не совпадают. ');
+    M_Error.Lines.Add('Р’РµСЂСЃРёСЏ РѕС‚РєСЂС‹РІР°РµРјРѕРіРѕ С„Р°Р№Р»Р°-С€Р°Р±Р»РѕРЅР° (' + orgInfo[orgInfoTemplateVersion] + ') Рё РІРµСЂСЃРёСЏ С„Р°Р№Р»Р°-С€Р°Р±Р»РѕРЅР° РґР»СЏ РєРѕС‚РѕСЂРѕРіРѕ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° СЌС‚Р° РїСЂРѕРіСЂР°РјРјР° (' + VersionTemplate + ') РЅРµ СЃРѕРІРїР°РґР°СЋС‚. ');
 
-  //Подбор кода ONMSZ учреждения
+  //РџРѕРґР±РѕСЂ РєРѕРґР° ONMSZ СѓС‡СЂРµР¶РґРµРЅРёСЏ
   if (orgInfo[orgInfoName] <> '') then
     begin
-      //Определяем код организации
+      //РћРїСЂРµРґРµР»СЏРµРј РєРѕРґ РѕСЂРіР°РЅРёР·Р°С†РёРё
       for i := Low(massOrgList) to High(massOrgList) do
         Begin
           if (massOrgList[i,massOrgListKratName] = orgInfo[orgInfoName]) then
@@ -648,135 +648,135 @@ begin
     end
   else
     begin
-      M_Error.Lines.Add('На титульном листе не выбрана организация. ');
+      M_Error.Lines.Add('РќР° С‚РёС‚СѓР»СЊРЅРѕРј Р»РёСЃС‚Рµ РЅРµ РІС‹Р±СЂР°РЅР° РѕСЂРіР°РЅРёР·Р°С†РёСЏ. ');
     end;
 
   if (orgInfo[orgInfoONMSZCode] = '') then
-      M_Error.Lines.Add('Не удалось определить код ONMSZ выбранной организации. ')
+      M_Error.Lines.Add('РќРµ СѓРґР°Р»РѕСЃСЊ РѕРїСЂРµРґРµР»РёС‚СЊ РєРѕРґ ONMSZ РІС‹Р±СЂР°РЅРЅРѕР№ РѕСЂРіР°РЅРёР·Р°С†РёРё. ')
   else
-    RE_Log.Lines.Add(textIdent + 'Выбранной организации ' + orgInfo[orgInfoName] + ' назначен код ONMSZ ' + orgInfo[orgInfoONMSZCode] + ';');
+    RE_Log.Lines.Add(textIdent + 'Р’С‹Р±СЂР°РЅРЅРѕР№ РѕСЂРіР°РЅРёР·Р°С†РёРё ' + orgInfo[orgInfoName] + ' РЅР°Р·РЅР°С‡РµРЅ РєРѕРґ ONMSZ ' + orgInfo[orgInfoONMSZCode] + ';');
 
   RE_Log.Lines.Add('');
   RE_Log.Lines.Add('');
 end;
 
 
-//Процедура проверяет реестр фактов назначения и подготавливает его для формирования в csv
+//РџСЂРѕС†РµРґСѓСЂР° РїСЂРѕРІРµСЂСЏРµС‚ СЂРµРµСЃС‚СЂ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ Рё РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµС‚ РµРіРѕ РґР»СЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РІ csv
 procedure TF_main.processingMassMszFact;
   var i, j:integer;
 begin
-  //Запускаем перебор массива
+  //Р—Р°РїСѓСЃРєР°РµРј РїРµСЂРµР±РѕСЂ РјР°СЃСЃРёРІР°
   for i := Low(massMszFact) to High(massMszFact) do
     begin
 
-      //Проверка СНИЛС
-        //Удаляем все символы которые не цифры
+      //РџСЂРѕРІРµСЂРєР° РЎРќРР›РЎ
+        //РЈРґР°Р»СЏРµРј РІСЃРµ СЃРёРјРІРѕР»С‹ РєРѕС‚РѕСЂС‹Рµ РЅРµ С†РёС„СЂС‹
         massMszFact[i, massMSZFactSNILS] := DeleteEverExNumber(massMszFact[i, massMSZFactSNILS]);
-        //Проверяем что получилось в итоге в снилс
+        //РџСЂРѕРІРµСЂСЏРµРј С‡С‚Рѕ РїРѕР»СѓС‡РёР»РѕСЃСЊ РІ РёС‚РѕРіРµ РІ СЃРЅРёР»СЃ
         if Length(massMszFact[i, massMSZFactSNILS]) <> 11 then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректный СНИЛС (' + massMszFact[i, massMSZFactSNILS] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РЎРќРР›РЎ (' + massMszFact[i, massMSZFactSNILS] + ').');
 
-      //Проверка фамилии
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° С„Р°РјРёР»РёРё
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactFamily] := Trim(massMszFact[i, massMSZFactFamily]);
-        //Проверяем то что получилось в итоге от фамилии
-        if (Length(massMszFact[i, massMSZFactFamily]) < 2) then  //Если осталось меньше двух символов
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную фамилию (' + massMszFact[i, massMSZFactFamily] + ').');
+        //РџСЂРѕРІРµСЂСЏРµРј С‚Рѕ С‡С‚Рѕ РїРѕР»СѓС‡РёР»РѕСЃСЊ РІ РёС‚РѕРіРµ РѕС‚ С„Р°РјРёР»РёРё
+        if (Length(massMszFact[i, massMSZFactFamily]) < 2) then  //Р•СЃР»Рё РѕСЃС‚Р°Р»РѕСЃСЊ РјРµРЅСЊС€Рµ РґРІСѓС… СЃРёРјРІРѕР»РѕРІ
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ С„Р°РјРёР»РёСЋ (' + massMszFact[i, massMSZFactFamily] + ').');
 
-      //Проверка имени
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РёРјРµРЅРё
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactName] := Trim(massMszFact[i, massMSZFactName]);
-        //Проверяем то что осталось в итоге от имени
-        if (Length(massMszFact[i, massMSZFactName]) < 2) then  //Если осталось меньше двух символов
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректное имя (' + massMszFact[i, massMSZFactName] + ').');
+        //РџСЂРѕРІРµСЂСЏРµРј С‚Рѕ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ РІ РёС‚РѕРіРµ РѕС‚ РёРјРµРЅРё
+        if (Length(massMszFact[i, massMSZFactName]) < 2) then  //Р•СЃР»Рё РѕСЃС‚Р°Р»РѕСЃСЊ РјРµРЅСЊС€Рµ РґРІСѓС… СЃРёРјРІРѕР»РѕРІ
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ (' + massMszFact[i, massMSZFactName] + ').');
 
-      //Проверка отчества
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РѕС‚С‡РµСЃС‚РІР°
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactSurname] := Trim(massMszFact[i, massMSZFactSurname]);
-        //Проверяем то что осталось в итоге от имени
-        if (Length(massMszFact[i, massMSZFactSurname]) < 2) then  //Если осталось меньше двух символов
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректное отчество (' + massMszFact[i, massMSZFactSurname] + ').');
+        //РџСЂРѕРІРµСЂСЏРµРј С‚Рѕ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ РІ РёС‚РѕРіРµ РѕС‚ РёРјРµРЅРё
+        if (Length(massMszFact[i, massMSZFactSurname]) < 2) then  //Р•СЃР»Рё РѕСЃС‚Р°Р»РѕСЃСЊ РјРµРЅСЊС€Рµ РґРІСѓС… СЃРёРјРІРѕР»РѕРІ
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РѕС‚С‡РµСЃС‚РІРѕ (' + massMszFact[i, massMSZFactSurname] + ').');
 
-      //Проверка пола
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РїРѕР»Р°
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactGender] := Trim(massMszFact[i, massMSZFactGender]);
-        //Заменяем все "ж" на "Ж" и "м" на "М"
+        //Р—Р°РјРµРЅСЏРµРј РІСЃРµ "Р¶" РЅР° "Р–" Рё "Рј" РЅР° "Рњ"
         massMszFact[i, massMSZFactGender] := ReplaceSexMark(massMszFact[i, massMSZFactGender] );
-        if (massMszFact[i, massMSZFactGender] <> 'Ж') and (massMszFact[i, massMSZFactGender] <> 'М') then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректный пол (' + massMszFact[i, massMSZFactGender] + ').');
+        if (massMszFact[i, massMSZFactGender] <> 'Р–') and (massMszFact[i, massMSZFactGender] <> 'Рњ') then
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РїРѕР» (' + massMszFact[i, massMSZFactGender] + ').');
 
-      //Проверка даты рождения
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РґР°С‚С‹ СЂРѕР¶РґРµРЅРёСЏ
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactBirthDate] := Trim(massMszFact[i, massMSZFactBirthDate]);
-        //Проверяем является ли введённое значение валидной датой
+        //РџСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІР°Р»РёРґРЅРѕР№ РґР°С‚РѕР№
         if ( IsDate(massMszFact[i, massMSZFactBirthDate]) = false)  then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную дату рождения (' + massMszFact[i, massMSZFactBirthDate] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ СЂРѕР¶РґРµРЅРёСЏ (' + massMszFact[i, massMSZFactBirthDate] + ').');
 
-      //Проверка даты назначения мсз
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РґР°С‚С‹ РЅР°Р·РЅР°С‡РµРЅРёСЏ РјСЃР·
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactDecisionDate] := Trim(massMszFact[i, massMSZFactDecisionDate]);
-        //Проверяем является ли введённое значение валидной датой
+        //РџСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІР°Р»РёРґРЅРѕР№ РґР°С‚РѕР№
         if ( IsDate(massMszFact[i, massMSZFactDecisionDate]) = false)  then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную дату принятия решения о назначении меры (' + massMszFact[i, massMSZFactDecisionDate] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ РїСЂРёРЅСЏС‚РёСЏ СЂРµС€РµРЅРёСЏ Рѕ РЅР°Р·РЅР°С‡РµРЅРёРё РјРµСЂС‹ (' + massMszFact[i, massMSZFactDecisionDate] + ').');
 
-      //Проверка даты начала действия мсз
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РґР°С‚С‹ РЅР°С‡Р°Р»Р° РґРµР№СЃС‚РІРёСЏ РјСЃР·
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactDateStart] := Trim(massMszFact[i, massMSZFactDateStart]);
-        //Проверяем является ли введённое значение валидной датой
+        //РџСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІР°Р»РёРґРЅРѕР№ РґР°С‚РѕР№
         if ( IsDate(massMszFact[i, massMSZFactDateStart]) = false)  then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную дату начала действия меры (' + massMszFact[i, massMSZFactDateStart] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ РЅР°С‡Р°Р»Р° РґРµР№СЃС‚РІРёСЏ РјРµСЂС‹ (' + massMszFact[i, massMSZFactDateStart] + ').');
 
-      //Проверка даты конца действия мсз
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РґР°С‚С‹ РєРѕРЅС†Р° РґРµР№СЃС‚РІРёСЏ РјСЃР·
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactDateFinish] := Trim(massMszFact[i, massMSZFactDateFinish]);
-        //Проверяем является ли введённое значение валидной датой
+        //РџСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё РІРІРµРґС‘РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІР°Р»РёРґРЅРѕР№ РґР°С‚РѕР№
         if ( IsDate(massMszFact[i, massMSZFactDateFinish]) = false)  then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную дату окончания действия меры (' + massMszFact[i, massMSZFactDateFinish] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ РґР°С‚Сѓ РѕРєРѕРЅС‡Р°РЅРёСЏ РґРµР№СЃС‚РІРёСЏ РјРµСЂС‹ (' + massMszFact[i, massMSZFactDateFinish] + ').');
 
 
-      //Проверка названия меры
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° РЅР°Р·РІР°РЅРёСЏ РјРµСЂС‹
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactLMSZName] := Trim(massMszFact[i, massMSZFactLMSZName]);
-        //Проверяем то что осталось
+        //РџСЂРѕРІРµСЂСЏРµРј С‚Рѕ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ
         if (massMszFact[i, massMSZFactLMSZName] = '') then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректное название меры (' + massMszFact[i, massMSZFactLMSZName] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РЅР°Р·РІР°РЅРёРµ РјРµСЂС‹ (' + massMszFact[i, massMSZFactLMSZName] + ').');
 
-      //Подбор кодов меры
-        //Перебираем справочник мер и подбираем коды
+      //РџРѕРґР±РѕСЂ РєРѕРґРѕРІ РјРµСЂС‹
+        //РџРµСЂРµР±РёСЂР°РµРј СЃРїСЂР°РІРѕС‡РЅРёРє РјРµСЂ Рё РїРѕРґР±РёСЂР°РµРј РєРѕРґС‹
         for j := Low(massMszList) to High(massMszList) do
           begin
             if massMszFact[i, massMSZFactLMSZName] = massMszList[j,massMszListKratName] then
               Begin
                 massMszFact[i, massMSZFactLMSZID] := massMszList[j,massMszListLMSZID];
-                massMszFact[i, massMSZFactLMSZCategoryID] := massMszList[j,massMszListСategoryID];
+                massMszFact[i, massMSZFactLMSZCategoryID] := massMszList[j,massMszListРЎategoryID];
                 Break;
               End;
           end;
-      //Проверяем нашлось ли что в итоге
+      //РџСЂРѕРІРµСЂСЏРµРј РЅР°С€Р»РѕСЃСЊ Р»Рё С‡С‚Рѕ РІ РёС‚РѕРіРµ
         if (massMszFact[i, massMSZFactLMSZID] = '') then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' не удалось определить идентификатор ЛМСЗ меры (' + massMszFact[i, massMSZFactLMSZID] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' РЅРµ СѓРґР°Р»РѕСЃСЊ РѕРїСЂРµРґРµР»РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р›РњРЎР— РјРµСЂС‹ (' + massMszFact[i, massMSZFactLMSZID] + ').');
         if (massMszFact[i, massMSZFactLMSZCategoryID] = '') then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' не удалось определить идентификатор локальной категории меры (' + massMszFact[i, massMSZFactLMSZCategoryID] + ').');
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' РЅРµ СѓРґР°Р»РѕСЃСЊ РѕРїСЂРµРґРµР»РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РѕРєР°Р»СЊРЅРѕР№ РєР°С‚РµРіРѕСЂРёРё РјРµСЂС‹ (' + massMszFact[i, massMSZFactLMSZCategoryID] + ').');
 
 
 
 
-      //Проверка суммы меры
-        //Удаляем пробелы в начале и в конце
+      //РџСЂРѕРІРµСЂРєР° СЃСѓРјРјС‹ РјРµСЂС‹
+        //РЈРґР°Р»СЏРµРј РїСЂРѕР±РµР»С‹ РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ
         massMszFact[i, massMSZFactAmount] := Trim(massMszFact[i, massMSZFactAmount]);
-        //Заменяем все "." на ","
+        //Р—Р°РјРµРЅСЏРµРј РІСЃРµ "." РЅР° ","
         massMszFact[i, massMSZFactAmount] := ReplaceNumberSeparator(massMszFact[i, massMSZFactAmount]);
-        //Проверяем является ли то что осталось числом float
+        //РџСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё С‚Рѕ С‡С‚Рѕ РѕСЃС‚Р°Р»РѕСЃСЊ С‡РёСЃР»РѕРј float
         if (IsFloat(massMszFact[i, massMSZFactAmount]) = false) then
-          M_Error.Lines.Add('Строка ' + IntToStr(i + 1) + ' содержит некорректную сумму (' + massMszFact[i, massMSZFactAmount] + ').')
-        else //Если сумма корректна - накапливаем итого по каждой мере в справочнике мер
+          M_Error.Lines.Add('РЎС‚СЂРѕРєР° ' + IntToStr(i + 1) + ' СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅСѓСЋ СЃСѓРјРјСѓ (' + massMszFact[i, massMSZFactAmount] + ').')
+        else //Р•СЃР»Рё СЃСѓРјРјР° РєРѕСЂСЂРµРєС‚РЅР° - РЅР°РєР°РїР»РёРІР°РµРј РёС‚РѕРіРѕ РїРѕ РєР°Р¶РґРѕР№ РјРµСЂРµ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ РјРµСЂ
           Begin
-            //Перебираем справочник мер и подбираем коды
+            //РџРµСЂРµР±РёСЂР°РµРј СЃРїСЂР°РІРѕС‡РЅРёРє РјРµСЂ Рё РїРѕРґР±РёСЂР°РµРј РєРѕРґС‹
             for j := Low(massMszList) to High(massMszList) do
               begin
                 if massMszFact[i, massMSZFactLMSZName] = massMszList[j,massMszListKratName] then
                   Begin
-                    //Накапливаем сумму по каждой мере
+                    //РќР°РєР°РїР»РёРІР°РµРј СЃСѓРјРјСѓ РїРѕ РєР°Р¶РґРѕР№ РјРµСЂРµ
                     massMszList[j,massMszListSumm] := FloatToStr(StrToFloat(massMszList[j,massMszListSumm]) + StrToFloat(massMszFact[i, massMSZFactAmount]));
                     Break;
                   End;
@@ -785,14 +785,14 @@ begin
 
     end;
 
-  //Выводим полученные данные в логи
+  //Р’С‹РІРѕРґРёРј РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РІ Р»РѕРіРё
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
-  RE_Log.Lines.Add('Обработка реестра фактов назначения МСЗ');
+  RE_Log.Lines.Add('РћР±СЂР°Р±РѕС‚РєР° СЂРµРµСЃС‚СЂР° С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР—');
   RE_Log.Lines.Add('------------------------------------------------------------------------------------------------------------------');
-  RE_Log.Lines.Add(textIdent + 'Всего суммы по мерам:');
+  RE_Log.Lines.Add(textIdent + 'Р’СЃРµРіРѕ СЃСѓРјРјС‹ РїРѕ РјРµСЂР°Рј:');
   for i := Low(massMszList) to High(massMszList) do
     begin
-      RE_Log.Lines.Add(textIdent + IntToStr(i) + ') ' + massMszList[i, massMszListKratName] + ': ' + massMszList[i, massMszListSumm] + 'руб.');
+      RE_Log.Lines.Add(textIdent + IntToStr(i) + ') ' + massMszList[i, massMszListKratName] + ': ' + massMszList[i, massMszListSumm] + 'СЂСѓР±.');
     end;
 
   RE_Log.Lines.Add('');
@@ -826,70 +826,70 @@ procedure TF_main.B_OpenFileClick(Sender: TObject);
 begin
   if OD_OpenXlsxFile.Execute then
   Begin
-    //Очищаем всё перед работой
+    //РћС‡РёС‰Р°РµРј РІСЃС‘ РїРµСЂРµРґ СЂР°Р±РѕС‚РѕР№
     M_Info.Clear;
     M_Error.Clear;
     RE_Log.Clear;
 
-    //Обнуляем таблицы
+    //РћР±РЅСѓР»СЏРµРј С‚Р°Р±Р»РёС†С‹
     SetLength(massMszList, 0);
     SetLength(massMszFact, 0);
     SetLength(massOrgList, 0);
     SetLength(orgInfo, 0);
 
-    //Пишем дату и начальную инфу
+    //РџРёС€РµРј РґР°С‚Сѓ Рё РЅР°С‡Р°Р»СЊРЅСѓСЋ РёРЅС„Сѓ
     RE_Log.Lines.Add('');
     RE_Log.Lines.Add(DateTimeToStr(now));
     RE_Log.Lines.Add('');
 
-    //Определяем данные файла
+    //РћРїСЂРµРґРµР»СЏРµРј РґР°РЅРЅС‹Рµ С„Р°Р№Р»Р°
     XlsxFile := OD_OpenXlsxFile.FileName;
     XlsxFileDir := ExtractFileDir(XlsxFile);
     XlsxFileName := ExtractFileName(XlsxFile);
     XlsxFileNameNoExt := StringReplace(ExtractFileName(XlsxFile),ExtractFileExt(XlsxFile),'',[]);
-        //Отладочный вывод путей
-        {RE_Log.Lines.Add('Путь к файлу: ' + XlsxFile);
-        RE_Log.Lines.Add('Путь папке файла: ' + XlsxFileDir);
-        RE_Log.Lines.Add('Имя файла: ' + XlsxFileName);
-        RE_Log.Lines.Add('Имя файла без расширения: ' + XlsxFileNameNoExt); }
+        //РћС‚Р»Р°РґРѕС‡РЅС‹Р№ РІС‹РІРѕРґ РїСѓС‚РµР№
+        {RE_Log.Lines.Add('РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ: ' + XlsxFile);
+        RE_Log.Lines.Add('РџСѓС‚СЊ РїР°РїРєРµ С„Р°Р№Р»Р°: ' + XlsxFileDir);
+        RE_Log.Lines.Add('РРјСЏ С„Р°Р№Р»Р°: ' + XlsxFileName);
+        RE_Log.Lines.Add('РРјСЏ С„Р°Р№Р»Р° Р±РµР· СЂР°СЃС€РёСЂРµРЅРёСЏ: ' + XlsxFileNameNoExt); }
 
-    //Запускаем получение данных
+    //Р—Р°РїСѓСЃРєР°РµРј РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С…
     getData(XlsxFile);
 
-    //Запускаем обработку титульного листа
-    if (M_Error.Text = '') then   //Если в предыдущих шагах ошибок не найдено...
+    //Р—Р°РїСѓСЃРєР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ С‚РёС‚СѓР»СЊРЅРѕРіРѕ Р»РёСЃС‚Р°
+    if (M_Error.Text = '') then   //Р•СЃР»Рё РІ РїСЂРµРґС‹РґСѓС‰РёС… С€Р°РіР°С… РѕС€РёР±РѕРє РЅРµ РЅР°Р№РґРµРЅРѕ...
         processingOrgInfo();
 
-    //Запускаем обработку реестра фактов
-    if (M_Error.Text = '') then   //Если в предыдущих шагах ошибок не найдено...
+    //Р—Р°РїСѓСЃРєР°РµРј РѕР±СЂР°Р±РѕС‚РєСѓ СЂРµРµСЃС‚СЂР° С„Р°РєС‚РѕРІ
+    if (M_Error.Text = '') then   //Р•СЃР»Рё РІ РїСЂРµРґС‹РґСѓС‰РёС… С€Р°РіР°С… РѕС€РёР±РѕРє РЅРµ РЅР°Р№РґРµРЅРѕ...
       processingMassMszFact();
 
 
-    //Ренедерим данные в табличку
+    //Р РµРЅРµРґРµСЂРёРј РґР°РЅРЅС‹Рµ РІ С‚Р°Р±Р»РёС‡РєСѓ
     renderTableMszFact();
 
-    //Запускаем сохранение в файл CSV
-    if (M_Error.Text = '') then   //Если в предыдущих шагах ошибок не найдено...
+    //Р—Р°РїСѓСЃРєР°РµРј СЃРѕС…СЂР°РЅРµРЅРёРµ РІ С„Р°Р№Р» CSV
+    if (M_Error.Text = '') then   //Р•СЃР»Рё РІ РїСЂРµРґС‹РґСѓС‰РёС… С€Р°РіР°С… РѕС€РёР±РѕРє РЅРµ РЅР°Р№РґРµРЅРѕ...
       renderDataToCsv();
 
 
-    //Вывод сообщений
+    //Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёР№
     if (M_Info.Text <> '') then
       Begin
         RE_Log.Lines.Add('');
-        RE_Log.Lines.Add('Обнаруженные НЕ критические ошибки:');
+        RE_Log.Lines.Add('РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Рµ РќР• РєСЂРёС‚РёС‡РµСЃРєРёРµ РѕС€РёР±РєРё:');
         RE_Log.Text := RE_Log.Text + M_Info.Text;
       End;
 
-    //Вывод ошибок
+    //Р’С‹РІРѕРґ РѕС€РёР±РѕРє
     if (M_Error.Text <> '') then
       Begin
         RE_Log.Lines.Add('');
-        RE_Log.Lines.Add('Обнаруженные КРИТИЧЕСКИЕ ошибки:');
+        RE_Log.Lines.Add('РћР±РЅР°СЂСѓР¶РµРЅРЅС‹Рµ РљР РРўРР§Р•РЎРљРР• РѕС€РёР±РєРё:');
         RE_Log.Text := RE_Log.Text + M_Error.Text;
       End;
 
-    B_log.Click; //Открываем форму с логами если она не была открыта
+    B_log.Click; //РћС‚РєСЂС‹РІР°РµРј С„РѕСЂРјСѓ СЃ Р»РѕРіР°РјРё РµСЃР»Рё РѕРЅР° РЅРµ Р±С‹Р»Р° РѕС‚РєСЂС‹С‚Р°
 
   End;
 
@@ -897,20 +897,20 @@ end;
 
 procedure TF_main.FormCreate(Sender: TObject);
 begin
-  //Применяем первоначальные настройки
-    //Оформление заголовка окна
-    F_main.Caption := 'Конвертер фактов назначения МСЗ xlsx->csv.  Версия программы ' + VersionSoftware + '  Версия шаблона ' + VersionTemplate;
+  //РџСЂРёРјРµРЅСЏРµРј РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё
+    //РћС„РѕСЂРјР»РµРЅРёРµ Р·Р°РіРѕР»РѕРІРєР° РѕРєРЅР°
+    F_main.Caption := 'РљРѕРЅРІРµСЂС‚РµСЂ С„Р°РєС‚РѕРІ РЅР°Р·РЅР°С‡РµРЅРёСЏ РњРЎР— xlsx->csv.  Р’РµСЂСЃРёСЏ РїСЂРѕРіСЂР°РјРјС‹ ' + VersionSoftware + '  Р’РµСЂСЃРёСЏ С€Р°Р±Р»РѕРЅР° ' + VersionTemplate;
 
-    //Оформление раздела "О программе"
+    //РћС„РѕСЂРјР»РµРЅРёРµ СЂР°Р·РґРµР»Р° "Рћ РїСЂРѕРіСЂР°РјРјРµ"
     L_VersionSoftware.caption := VersionSoftware;
     L_VersionTemplate.Caption := VersionTemplate;
     L_DateBuild.Caption := DateBuild;
 
-    //Задание отступов у RE_log
+    //Р—Р°РґР°РЅРёРµ РѕС‚СЃС‚СѓРїРѕРІ Сѓ RE_log
     RE_Log.Paragraph.FirstIndent:=10;
     RE_Log.Paragraph.LeftIndent:=10;
 
-    //Включаем интерфейс на страницу логов
+    //Р’РєР»СЋС‡Р°РµРј РёРЅС‚РµСЂС„РµР№СЃ РЅР° СЃС‚СЂР°РЅРёС†Сѓ Р»РѕРіРѕРІ
     B_log.Click;
 
 end;

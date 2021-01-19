@@ -887,6 +887,10 @@ object F_main: TF_main
       RowCount = 1
       FixedRows = 0
       TabOrder = 1
+      ColWidths = (
+        64)
+      RowHeights = (
+        24)
     end
     object P_Info: TPanel
       Left = 1
@@ -895,8 +899,6 @@ object F_main: TF_main
       Height = 560
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = 57
-      ExplicitTop = -4
       object Label1: TLabel
         Left = 210
         Top = 16
@@ -1815,13 +1817,13 @@ object F_main: TF_main
       object L_VersionSoftware: TLabel
         Left = 162
         Top = 352
-        Width = 73
+        Width = 5
         Height = 16
       end
       object L_VersionTemplate: TLabel
         Left = 272
         Top = 374
-        Width = 153
+        Width = 5
         Height = 16
       end
       object L_DateBuild: TLabel
